@@ -23,6 +23,7 @@ namespace ISR_program
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowModel();
         }
     }
 }

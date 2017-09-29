@@ -68,6 +68,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowModel.cs" />
+    <Compile Include="Pomocnicze\RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BazaDanych\BazaDanych.csproj">
+      <Project>{5f0cd1fb-ec3a-41f5-b67a-1fda89374fd2}</Project>
+      <Name>BazaDanych</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Okna\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
