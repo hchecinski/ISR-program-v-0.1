@@ -10,8 +10,8 @@ namespace BazaDanych.Pomocnicze
     {
         IEnumerable<T> WczytajDane();
         T PobierzElement(int id);
-        int EdytujElement(int id);
+        void EdytujElement(T element);
         int ZapiszElement(T element);
-        int UsunElement(int id);
+        void UsunElement(int id);
     }
 }

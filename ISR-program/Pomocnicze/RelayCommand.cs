@@ -10,44 +10,41 @@ namespace ISR_program.Pomocnicze
 {
     public class RelayCommand : ICommand
     {
-        #region Fields
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;
-        #endregion
+        private readonly Func<Boolean> _canExecute;
+        private readonly Action _execute;
 
-        #region Constructors
+        public RelayCommand(Action execute) : this(execute, null){ }
 
-        public RelayCommand(Action<object> execute) : this(execute, null) { }
-
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action execute, Func<Boolean> canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
+            if (execute == null) throw new ArgumentNullException("execute");
 
             _execute = execute;
             _canExecute = canExecute;
         }
-        #endregion
-
-        #region ICommand Members
-
-        [DebuggerStepThrough]
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null ? true : _canExecute(parameter);
-        }
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add
+            {
+                if (_canExecute != null)
+                    CommandManager.RequerySuggested += value;
+            }
+            remove
+            {
+                if (_canExecute != null)
+                    CommandManager.RequerySuggested -= value;
+            }
         }
 
-        public void Execute(object parameter)
+        public Boolean CanExecute(Object parameter)
         {
-            _execute(parameter);
+            return _canExecute == null ? true : _canExecute();
         }
 
-        #endregion
+        public void Execute(Object parameter)
+        {
+            _execute();
+        }
     }
 }

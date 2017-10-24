@@ -9,7 +9,7 @@ namespace BazaDanych.Procedury
 {
     public class Warsztaty : IPolecenia<Warsztaty>
     {
-        public int EdytujElement(int id)
+        public void EdytujElement(Warsztaty element)
         {
             throw new NotImplementedException();
         }
@@ -19,7 +19,7 @@ namespace BazaDanych.Procedury
             throw new NotImplementedException();
         }
 
-        public int UsunElement(int id)
+        public void UsunElement(int id)
         {
             throw new NotImplementedException();
         }
